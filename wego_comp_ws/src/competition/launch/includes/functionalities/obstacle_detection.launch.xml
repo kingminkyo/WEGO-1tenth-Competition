@@ -1,0 +1,10 @@
+<launch>
+    <arg name="pkg_name" />
+
+    <!-- 장애물 (미완) -->
+    <node name="stat_obstacle" pkg="$(arg pkg_name)" type="stat_obs_detect.py" output="screen"/>
+
+    <!-- 동적 장애물 -->
+    <node name="mv_obstacle" pkg="$(arg pkg_name)" type="mv_obs_detect.py" output="screen"/>
+
+</launch>

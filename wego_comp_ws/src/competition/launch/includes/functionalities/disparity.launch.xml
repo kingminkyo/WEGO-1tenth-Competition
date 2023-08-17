@@ -1,0 +1,12 @@
+<launch>
+    <arg name="pkg_name" />
+
+    <param name="disparity_mode" value='False'/>
+    <!-- MCRB node -->
+    <node name="lidarRB" pkg="$(arg pkg_name)" type="MCRB.py" output="screen"/>
+
+    <!-- Disparity node -->
+    <node name="Disparity" pkg="$(arg pkg_name)" type="disparity.py" output="screen"/>
+
+
+</launch>

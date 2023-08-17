@@ -1,0 +1,69 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  <arg name="pkg_name" default="competition"/>
+
+  <!-- 센서 관련 -->
+    <!-- <include file="$(find rubbercone)/launch/includes/sensors/view_rplidar_s1.launch.xml">
+    </include>
+
+
+-->
+  <!-- 센서 관련 -->
+    <!-- <include file="$(find rubbercone)/launch/includes/sensors/wego_usb_cam-test.launch.xml">
+    </include> -->
+
+    <include file="$(find rubbercone)/launch/includes/sensors/vesc_driver_node.launch.xml">
+    </include>
+
+  <!-- 차선 관련 기능들 -->
+
+    <include file="$(find competition)/launch/includes/functionalities/path_tracking.launch.xml">
+      <arg name="pkg_name" value="$(arg pkg_name)"/>
+    </include> 
+    <param name="normal_drive_mode" value="True"/>
+    <param name="stop_line_mode" value="False"/>
+
+  <!-- 차선 관련 기능들 -->
+
+
+
+  <!-- 미션 관련 기능들 -->
+
+    <!-- Disparity Extender -->
+    <include file="$(find competition)/launch/includes/functionalities/disparity.launch.xml"> 
+      <arg name="pkg_name" value="$(arg pkg_name)" />
+    </include>
+
+    <!-- Obstacle -->
+    <include file="$(find competition)/launch/includes/functionalities/obstacle_detection.launch.xml"> 
+      <arg name="pkg_name" value="$(arg pkg_name)" />
+    </include>
+    <param name="mv_obs_detect_mode" value="False"/>
+    <param name="stat_obs_detect_mode" value="False"/>
+
+    <include file="$(find yolov5_ros)/launch/yolov5.launch"/>
+    <param name="mv_obs_detect_mode" value="False"/>
+
+    <!-- <node name="mv_obstacle" pkg="$(arg pkg_name)" type="mv_obs_detect.py" output="screen"/> -->
+
+    <!-- Aruco marker -->
+    <!-- <include file="$(find aruco_detect)/launch/aruco_detect.launch"/>  -->
+    <param name="aruco_mode" value="False"/>
+    <!-- <node name="marker_recognition_node" pkg="$(arg pkg_name)" type="marker.py" output="screen"/> -->
+
+  <!-- 미션 관련 기능들 -->
+
+
+
+  <!-- 제어 관련 기능들 -->
+
+    <!-- <node name="central_control_node" pkg="competition" type="motor_main.py" output="screen"/> -->
+
+    <!-- <node name="total_steer" pkg="$(arg pkg_name)" type="steer.py" output="screen"/>
+    <param name="lane_changing_mode" value="False"/> -->
+    <node name="control_node" pkg="$(arg pkg_name)" type="control.py" output="screen"/>
+    <param name="lane_changing_mode" value="False"/>
+
+  <!-- 제어 관련 기능들 -->
+
+</launch>

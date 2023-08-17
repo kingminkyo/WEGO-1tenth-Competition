@@ -1,0 +1,6 @@
+<launch>
+  <arg name="pkg_name" />
+  <!-- Path Tracking node -->
+  <node name="path_tracking" pkg="$(arg pkg_name)" type="lane_detection.py" output="screen"/>
+
+</launch>

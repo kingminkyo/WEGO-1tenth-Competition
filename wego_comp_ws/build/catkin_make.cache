@@ -1,0 +1,2 @@
+competition
+-DCATKIN_DEVEL_PREFIX=/home/wego/wego_comp_ws/devel -DCMAKE_INSTALL_PREFIX=/home/wego/wego_comp_ws/install -G Unix Makefiles

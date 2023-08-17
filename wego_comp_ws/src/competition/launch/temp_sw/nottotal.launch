@@ -1,0 +1,40 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  <!-- <arg name="racecar_version" default="racecar-v2" /> -->
+  <!-- <arg name="run_camera" default="false"/> -->
+
+  <!-- <group ns="sensors"> -->
+    <!-- <include file="$(find rubbercone)/launch/includes/sensors/view_rplidar_s1.launch.xml">
+    </include> -->
+
+    <!-- <include file="$(find rubbercone)/launch/includes/sensors/vesc_driver_node.launch.xml">
+    </include> -->
+
+    <include file="$(find minkyo)/launch/includes/sensors/wego_usb_cam-test.launch.xml">
+    </include>
+  <!-- </group> -->
+
+
+  <!-- turn on disparity extender -->
+    <include file="$(find minkyo)/launch/includes/functionalities/disparity.launch.xml"> 
+    </include>
+    
+  <!-- Path Tracking -->
+    <include file="$(find minkyo)/launch/includes/functionalities/path_tracking.launch.xml"> 
+    </include>
+    
+  <!-- Obstacle detection -->
+    <!-- <include file="$(find minkyo)/launch/includes/functionalities/obstacle_detection.launch.xml"> 
+    </include> -->
+
+  <!-- Obstacle detection -->
+    <include file="$(find aruco_detect)/launch/aruco_detect.launch"> 
+    </include>
+  <!-- Motor speed control -->
+    <node name="central_control_node" pkg="minkyo" type="motor_main.py" output="screen"/>
+
+  <!-- marker_recognition_node control -->
+    <node name="marker_recognition_node" pkg="minkyo" type="marker.py" output="screen"/>
+
+
+</launch>

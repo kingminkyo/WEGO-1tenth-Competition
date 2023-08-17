@@ -1,0 +1,8 @@
+prefix=/home/wego/wego_comp_ws/install
+
+Name: competition
+Description: Description of competition
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
